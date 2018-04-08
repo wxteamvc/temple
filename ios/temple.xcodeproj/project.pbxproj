@@ -50,6 +50,7 @@
 		E3680CC2E02C40D6BD7675AC /* libRNVectorIcons.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CD204CD8C8B34085AC569BD8 /* libRNVectorIcons.a */; };
 		6842BD1C338245E0B41417AD /* libimageCropPicker.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 069FCFDD2538476C83BBF261 /* libimageCropPicker.a */; };
 		5A2BF4A9B09F4170861B9BFF /* libRCTVideo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 06006A4260B4405D9931BBAA /* libRCTVideo.a */; };
+		276BBAA381654F73BDBEB776 /* libRCTOrientation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5978D0F515614421AF8AC7E4 /* libRCTOrientation.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -316,6 +317,8 @@
 		069FCFDD2538476C83BBF261 /* libimageCropPicker.a */ = {isa = PBXFileReference; name = "libimageCropPicker.a"; path = "libimageCropPicker.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
 		6073B0DD0EDE43D9A182F16E /* RCTVideo.xcodeproj */ = {isa = PBXFileReference; name = "RCTVideo.xcodeproj"; path = "../node_modules/react-native-video/ios/RCTVideo.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
 		06006A4260B4405D9931BBAA /* libRCTVideo.a */ = {isa = PBXFileReference; name = "libRCTVideo.a"; path = "libRCTVideo.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
+		92F81D811E2C40FD9AB58C7A /* RCTOrientation.xcodeproj */ = {isa = PBXFileReference; name = "RCTOrientation.xcodeproj"; path = "../node_modules/react-native-orientation/iOS/RCTOrientation.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
+		5978D0F515614421AF8AC7E4 /* libRCTOrientation.a */ = {isa = PBXFileReference; name = "libRCTOrientation.a"; path = "libRCTOrientation.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -347,6 +350,7 @@
 				E3680CC2E02C40D6BD7675AC /* libRNVectorIcons.a in Frameworks */,
 				6842BD1C338245E0B41417AD /* libimageCropPicker.a in Frameworks */,
 				5A2BF4A9B09F4170861B9BFF /* libRCTVideo.a in Frameworks */,
+				276BBAA381654F73BDBEB776 /* libRCTOrientation.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -527,6 +531,7 @@
 				7C5EC8D837B84290B6065E5C /* RNVectorIcons.xcodeproj */,
 				9E22AF2AE61D4038B489D5A3 /* imageCropPicker.xcodeproj */,
 				6073B0DD0EDE43D9A182F16E /* RCTVideo.xcodeproj */,
+				92F81D811E2C40FD9AB58C7A /* RCTOrientation.xcodeproj */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -1131,12 +1136,14 @@
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)\..\node_modules\react-native-vector-icons\RNVectorIconsManager",
 					"$(SRCROOT)\..\node_modules\react-native-image-crop-picker\ios/**",
 					"$(SRCROOT)\..\node_modules\react-native-video\ios",
+					"$(SRCROOT)\..\node_modules\react-native-orientation\iOS\RCTOrientation/**",
 				);
 			};
 			name = Debug;
@@ -1160,12 +1167,14 @@
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)\..\node_modules\react-native-vector-icons\RNVectorIconsManager",
 					"$(SRCROOT)\..\node_modules\react-native-image-crop-picker\ios/**",
 					"$(SRCROOT)\..\node_modules\react-native-video\ios",
+					"$(SRCROOT)\..\node_modules\react-native-orientation\iOS\RCTOrientation/**",
 				);
 			};
 			name = Release;
@@ -1190,6 +1199,7 @@
 					"$(SRCROOT)\..\node_modules\react-native-vector-icons\RNVectorIconsManager",
 					"$(SRCROOT)\..\node_modules\react-native-image-crop-picker\ios/**",
 					"$(SRCROOT)\..\node_modules\react-native-video\ios",
+					"$(SRCROOT)\..\node_modules\react-native-orientation\iOS\RCTOrientation/**",
 				);
 			};
 			name = Debug;
@@ -1213,6 +1223,7 @@
 					"$(SRCROOT)\..\node_modules\react-native-vector-icons\RNVectorIconsManager",
 					"$(SRCROOT)\..\node_modules\react-native-image-crop-picker\ios/**",
 					"$(SRCROOT)\..\node_modules\react-native-video\ios",
+					"$(SRCROOT)\..\node_modules\react-native-orientation\iOS\RCTOrientation/**",
 				);
 			};
 			name = Release;
@@ -1245,12 +1256,14 @@
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)\..\node_modules\react-native-vector-icons\RNVectorIconsManager",
 					"$(SRCROOT)\..\node_modules\react-native-image-crop-picker\ios/**",
 					"$(SRCROOT)\..\node_modules\react-native-video\ios",
+					"$(SRCROOT)\..\node_modules\react-native-orientation\iOS\RCTOrientation/**",
 				);
 			};
 			name = Debug;
@@ -1283,12 +1296,14 @@
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)\..\node_modules\react-native-vector-icons\RNVectorIconsManager",
 					"$(SRCROOT)\..\node_modules\react-native-image-crop-picker\ios/**",
 					"$(SRCROOT)\..\node_modules\react-native-video\ios",
+					"$(SRCROOT)\..\node_modules\react-native-orientation\iOS\RCTOrientation/**",
 				);
 			};
 			name = Release;
@@ -1316,6 +1331,7 @@
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 			};
 			name = Debug;
@@ -1340,6 +1356,7 @@
 				TVOS_DEPLOYMENT_TARGET = 10.1;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",

@@ -34,9 +34,8 @@ class AlbumInfo extends Component {
 
     componentDidMount() {
         const { navigation, dispatch } = this.props;
-        dispatch(getAlbumInfo(1))
+        dispatch(getAlbumInfo(3))
         dispatch(getRecommend('audio', 4))
-        this.startAnimated()
     }
 
 
@@ -46,21 +45,10 @@ class AlbumInfo extends Component {
         dispatch({ type: 'RECOMMEND_INIT' })
     }
 
-    startAnimated() {
-        this.state.rotateValue.setValue(0)
-        Animated.loop(
-            Animated.timing(this.state.rotateValue, {
-                toValue: 1,
-                duration: 12000,// 动画持续的时间（单位是毫秒），默认为500
-                easing: Easing.out(Easing.linear),// 一个用于定义曲线的渐变函数
-            })
-        ).start()
-    }
-
 
     render() {
         const { albumInfo ,recommend} = this.props;
-        log(recommend)
+        // log(recommend)
         if (albumInfo.status == 'success') {
             const { data } = albumInfo;
             const tabs = [
@@ -72,19 +60,12 @@ class AlbumInfo extends Component {
                     <NavigationBar {...this.props} rbtn={<Icon2 name={'md-aperture'} size={25} color={'#fff'} />} rbtnOnPress={() => alert('我是分享')} />
                     <View style={styles.top_container}>
                         <View style={styles.top_left}>
-                            <Animated.View style={[styles.top_left_img_container, {
-                                transform: [{
-                                    rotate: this.state.rotateValue.interpolate({ // 旋转，使用插值函数做值映射
-                                        inputRange: [0, 1],
-                                        outputRange: ['0deg', '360deg']
-                                    })
-                                }]
-                            }]}>
+                            <View style={styles.top_left_img_container}>
                                 <Image
                                     source={{ uri: data.cover_image }}
                                     style={styles.top_left_img}
                                 />
-                            </Animated.View>
+                            </View>
                         </View>
                         <View style={styles.top_right}>
                             <Text style={styles.fontsize14} numberOfLines={2}> {data.title} </Text>

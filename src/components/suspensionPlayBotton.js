@@ -11,6 +11,7 @@ import {
 import MyBtn from './button';
 import Icon from 'react-native-vector-icons/dist/FontAwesome';
 import { connect } from 'react-redux';
+import NavigationService from '../container/NavigationService';
 
 class SuspensionPlayBotton extends Component {
     constructor(props) {
@@ -55,6 +56,14 @@ class SuspensionPlayBotton extends Component {
     }
 
 
+    componentWillMount() {
+        const { playReducer } = this.props;
+        if (!playReducer.pause) {
+            this.imgMoving()
+        }
+
+    }
+
     imgMoving = () => {
         if (!this.next_pause) {
             this.state.rotateValue.setValue(0);
@@ -72,9 +81,10 @@ class SuspensionPlayBotton extends Component {
         return (
             <View style={styles.container}>
                 <MyBtn onPress={() => {
-                    this.props.dispatch({ type: 'change_pause' })
+                    // this.props.dispatch({ type: 'change_pause' })
+                    NavigationService.navigate('PlayScene')
                 }}>
-                    <Animated.View style={[{
+                    <Animated.View style={[styles.image_container,{
                         transform: [{
                             rotate: this.state.rotateValue.interpolate({ // 旋转，使用插值函数做值映射
                                 inputRange: [0, 1],
@@ -82,11 +92,10 @@ class SuspensionPlayBotton extends Component {
                             })
                         }]
                     }]}>
-                        <ImageBackground
-                            source={require('../constants/images/默认封面.png')}
-                            style={styles.image}
-                        >
-                        </ImageBackground>
+                    <Image
+                        source={playReducer.play.cover_image ? { uri: playReducer.play.cover_image } : require('../constants/images/默认封面.png')}
+                        style={styles.image}
+                    />
                     </Animated.View>
                 </MyBtn>
 
@@ -109,12 +118,9 @@ const styles = StyleSheet.create({
         position: 'absolute', bottom: 100, right: 10
     },
     image_container: {
-        backgroundColor: '#000', borderRadius: 20
+        borderRadius: 20
     },
     image: {
-        height: 38, width: 38, borderRadius: 19, justifyContent: 'center', alignItems: 'center',
+        height: 40, width: 40, borderRadius: 20,
     },
-    icon: {
-        height: 40, width: 40, borderRadius: 20, backgroundColor: 'rgba(255,255,255,0.5)', justifyContent: 'center', alignItems: 'center', position: 'absolute', top: 0, left: 0
-    }
 })

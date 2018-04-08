@@ -17,7 +17,7 @@ import {
 } from 'react-native';
 import Icon from 'react-native-vector-icons/dist/FontAwesome';
 import Icon2 from 'react-native-vector-icons/dist/Ionicons';
-import { fontSizeScaler, ScreenHeight, StatusBarHeight, ScreenWidth, styleColor } from '../constants/global';
+import { fontSizeScaler, ScreenHeight, StatusBarHeight, ScreenWidth, styleColor, log } from '../constants/global';
 import MyBtn from './button';
 import { WhiteSpace, WingBlank, Carousel, Grid } from 'antd-mobile';
 import ListBlock from './listBlock';
@@ -25,21 +25,24 @@ import { data1, data2, data3, data4, } from '../pages/deadData';
 
 export default class AlbumListPage extends Component {
 
-    ChangeNum(num) {
-        if (num >= 10000) {
-            return (
-                `${(num / 10000).toFixed(1)}万`
-            )
-        } else {
-            return num
-        }
+
+    palyItem = (item, index) => {
+        const list = this.props.data.resources;
+        const promise = new Promise((resolve, reject) => {
+            resolve()
+        });
+        promise
+            .then(() => this.props.dispatch({ type: 'set_and_play', list: list, data: item, index: index }))
+            .then(this.props.navigation.navigate('PlayScene'))
     }
 
     renderItem = ({ item, index }) => {
-        log(item)
+        // log(item)
         return (
-            <View style={styles.item_container}>
-                <Image source={item.cover_image?{ uri: item.cover_image }:require('../constants/images/默认封面.png')}
+            <MyBtn
+                onPress={() => this.palyItem(item, index)}
+                style={styles.item_container}>
+                <Image source={item.cover_image ? { uri: item.cover_image } : require('../constants/images/默认封面.png')}
                     style={styles.item_image}
                 />
                 <View style={styles.item_mid}>
@@ -65,7 +68,7 @@ export default class AlbumListPage extends Component {
                         <Icon name={'download'} size={15} color={'#ccc'} />
                     </MyBtn>
                 </View>
-            </View>
+            </MyBtn>
         )
     }
 
@@ -93,6 +96,7 @@ export default class AlbumListPage extends Component {
                     keyExtractor={(item, index) => index.toString()}
                     ItemSeparatorComponent={() => <View style={styles.division_line}></View>}
                     showsVerticalScrollIndicator={false}
+                    ListFooterComponent={ <WhiteSpace size={'lg'} />}
                 />
             </View >
 
@@ -115,7 +119,7 @@ const styles = StyleSheet.create({
         fontSize: 16 * fontSizeScaler, color: '#000'
     },
     container: {
-        backgroundColor: '#fff'
+        backgroundColor: '#fff', flex: 1,
     },
     head_container: {
         flexDirection: 'row', justifyContent: 'space-between', paddingTop: 15, paddingBottom: 15, paddingLeft: 10, paddingRight: 10

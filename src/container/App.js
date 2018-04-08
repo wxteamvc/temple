@@ -5,10 +5,14 @@ import {
     Text,
     View,
     Animated,
-    Easing
+    Easing,
+    StatusBar,
+
 } from 'react-native';
 import { connect } from 'react-redux';
 import { StackNavigator } from 'react-navigation';
+import { ScreenWidth, ScreenHeight, StatusBarHeight, fontSizeScaler, styleColor, log, toMinute } from '../constants/global'
+import NavigationService from './NavigationService';
 import SuspensionPlayBotton from '../components/suspensionPlayBotton';
 import CardStackStyleInterpolator from 'react-navigation/src/views/CardStack/CardStackStyleInterpolator';
 import HomeTab from './HomeTab';
@@ -24,12 +28,13 @@ import QuestionList from '../pages/List/QuestionListView';
 import CreatQuestion from '../pages/Details/CreateQuestionView';
 import ChildrenAnswer from '../pages/Details/ChildrenAnswerView';
 import PlayScene from '../pages/Details/PlaySceneView';
+import VideoPlay from '../pages/Details/VideoPlayView';
 
 
 const MyApp = StackNavigator(
     {
-        PlayScene: {
-            screen: PlayScene,
+        VideoPlay: {
+            screen: VideoPlay,
             navigationOptions: ({ navigation }) => {
                 return ({
                     header: null
@@ -39,6 +44,15 @@ const MyApp = StackNavigator(
 
         HomeTab: {
             screen: HomeTab,
+            navigationOptions: ({ navigation }) => {
+                return ({
+                    header: null
+                })
+            }
+        },
+
+        PlayScene: {
+            screen: PlayScene,
             navigationOptions: ({ navigation }) => {
                 return ({
                     header: null
@@ -133,8 +147,6 @@ const MyApp = StackNavigator(
                 })
             }
         },
-
-
     },
     {
         transitionConfig: () => ({
@@ -154,8 +166,15 @@ class App extends Component {
     render() {
         return (
             <View style={{ flex: 1 }}>
-                <MyApp />
-                {this.props.playReducer.showBtn ?
+                <StatusBar
+                    backgroundColor={styleColor}
+                    translucent={false}
+                />
+                <MyApp
+                    ref={navigatorRef => {
+                        NavigationService.setTopLevelNavigator(navigatorRef);
+                    }} />
+                {this.props.playReducer.showBtn && this.props.playReducer.resources_list.length > 0 ?
                     <SuspensionPlayBotton /> : null
                 }
 

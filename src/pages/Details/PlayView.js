@@ -27,18 +27,37 @@ class Play extends Component {
 
 
     componentWillUpdate(nextProps, nextState) {
-        if (nextProps.playReducer.change_progress == 'done') {
-            const { play_progress } = nextProps.playReducer
-            log(play_progress)
-            this.player.seek(play_progress)
-            this.props.dispatch({ type: 'change_progress_done' })
+        if (this.props.playReducer.seek_time != nextProps.playReducer.seek_time) {
+            function playSeek(play) {
+                return (
+                    new Promise((resolve, reject) => {
+                        play.seek(nextProps.playReducer.seek_time);
+                        this.timer = setTimeout(() => resolve(),250);
+
+                    })
+                )
+            }
+            playSeek(this.player).then(() => {
+                this.props.dispatch({ type: 'change_progress_done' })
+            }).then(this.timer && clearTimeout(this.timer))
+
         }
     }
 
 
 
     setTime = (time) => {
-        this.props.dispatch({ type: 'play', data: time.currentTime })
+        const { playReducer } = this.props
+        if (!playReducer.is_slider) {
+            this.props.dispatch({ type: 'play', data: time.currentTime })
+        }
+    }
+
+    onEnd = () => {
+        this.player.seek(0)
+        if (!this.props.playReducer.is_repeat) {
+            this.props.dispatch({ type: 'change_sound', data: 'next' })
+        }
     }
 
     render() {
@@ -47,13 +66,15 @@ class Play extends Component {
             <View>
                 <Video
                     ref={(ref) => { this.player = ref }}
-                    source={{ uri: playReducer.path }}
+                    source={{ uri: playReducer.play.path }}
                     style={styles.backgroundVideo}
                     resizeMode="cover"
-                    repeat={true}
+                    repeat={playReducer.is_repeat}
                     playInBackground={true}
                     paused={playReducer.pause}
+                    // onLoad={() => { alert('开始') }}
                     onProgress={this.setTime}
+                    onEnd={this.onEnd}
                 />
             </View>
         )
